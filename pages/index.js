@@ -1,14 +1,13 @@
+import Navbar from "../src/components/Navbar";
 import styled from "styled-components";
-import { Heading } from "../src/components/LayoutComponents";
 
 const Home = () => {
   return (
     <PageWrapper>
-      <Heading>Prague Labs testovací zadání</Heading>
+      <Navbar />
     </PageWrapper>
   );
 };
-
 const PageWrapper = styled.div``;
 
 export default Home;
