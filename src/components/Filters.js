@@ -1,7 +1,15 @@
-import { Container, Heading2, Heading3, Paragraph } from "../components/styles/LayoutComponents";
+import { Container, Heading2 } from "../components/styles/LayoutComponents";
 import { StyledSection, Grid, Flex } from "../components/styles/Filters.styled";
+import Typebox from "../components/Typebox";
 
-const Filters = () => {
+const Filters = ({ onClick }) => {
+  const boxData = [
+    { type: "Campervan", heading: "Campervan", paragraph: "Obytka s rozměry osobáku, se kterou dojedete všude." },
+    { type: "Intergrated", heading: "Integrál", paragraph: "Král mezi karavany. Luxus na kolech." },
+    { type: "BuiltIn", heading: "Vestavba", paragraph: "Celý byt geniálně poskládaný do dodávky." },
+    { type: "Alcove", heading: "Přívěs", paragraph: "Tažný karavan za vaše auto. Od kapkovitých až po rodinné." },
+  ];
+
   return (
     <StyledSection>
       <Container>
@@ -9,34 +17,26 @@ const Filters = () => {
           <div>
             <Heading2>Cena za den</Heading2>
             <Flex>
-              <input type="number" id="minNum" value="888" />
-              <input type="number" id="maxNum" value="999" />
+              <input type="number" id="minNum" value="888" onChange={() => console.log("input")} />
+              <input type="number" id="maxNum" value="999" onChange={() => console.log("input")} />
             </Flex>
           </div>
           <div>
             <Heading2>Typ karavanu</Heading2>
             <Flex>
-              <div>
-                <Heading3>Campervan</Heading3>
-                <Paragraph>Obytka s rozměry osobáku, se kterou dojedete všude.</Paragraph>
-              </div>
-              <div>
-                <Heading3>Integrál</Heading3>
-                <Paragraph>Král mezi karavany. Luxus na kolech.</Paragraph>
-              </div>
-              <div>
-                <Heading3>Vestavba</Heading3>
-                <Paragraph>Celý byt geniálně poskládaný do dodávky.</Paragraph>
-              </div>
-              <div>
-                <Heading3>Přívěs</Heading3>
-                <Paragraph>Tažný karavan za vaše auto. Od kapkovitých až po rodinné.</Paragraph>
-              </div>
+              {boxData.map((box, index) => (
+                <Typebox
+                  heading={box.heading}
+                  paragraph={box.paragraph}
+                  key={index}
+                  onClick={() => onClick(box.type)}
+                />
+              ))}
             </Flex>
           </div>
           <div>
             <Heading2>Okamžitá rezervace</Heading2>
-            <select name="reservation" id="reservation">
+            <select name="reservation" id="reservation" onChange={() => console.log("select")}>
               <option value="yes">Ano</option>
               <option value="no">Ne</option>
             </select>
