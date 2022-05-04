@@ -5,6 +5,9 @@ import styled from "styled-components";
 
 const Home = () => {
   const [type, setType] = useState("");
+  const [reservation, setReservation] = useState("yes");
+  const [minPrice, setMinPrice] = useState(100);
+  const [maxPrice, setMaxPrice] = useState(1000);
 
   const getData = async () => {
     const response = await fetch("/api/data");
@@ -20,7 +23,14 @@ const Home = () => {
   return (
     <PageWrapper>
       <Navbar />
-      <Filters onClick={type => setType(type)} />
+      <Filters
+        min={minPrice}
+        max={maxPrice}
+        onClick={type => setType(type)}
+        onSelectChange={event => setReservation(event.target.value)}
+        onInputMinChange={event => setMinPrice(Number(event.target.value))}
+        onInputMaxChange={event => setMaxPrice(Number(event.target.value))}
+      />
     </PageWrapper>
   );
 };

@@ -2,7 +2,7 @@ import { Container, Heading2 } from "../components/styles/LayoutComponents";
 import { StyledSection, Grid, Flex } from "../components/styles/Filters.styled";
 import Typebox from "../components/Typebox";
 
-const Filters = ({ onClick }) => {
+const Filters = ({ min, max, reservation, onClick, onSelectChange, onInputMinChange, onInputMaxChange }) => {
   const boxData = [
     { type: "Campervan", heading: "Campervan", paragraph: "Obytka s rozměry osobáku, se kterou dojedete všude." },
     { type: "Intergrated", heading: "Integrál", paragraph: "Král mezi karavany. Luxus na kolech." },
@@ -17,8 +17,22 @@ const Filters = ({ onClick }) => {
           <div>
             <Heading2>Cena za den</Heading2>
             <Flex>
-              <input type="number" id="minNum" value="888" onChange={() => console.log("input")} />
-              <input type="number" id="maxNum" value="999" onChange={() => console.log("input")} />
+              <input
+                type="number"
+                id="minNum"
+                value={min}
+                min="100"
+                max="1000"
+                onChange={event => onInputMinChange(event)}
+              />
+              <input
+                type="number"
+                id="maxNum"
+                value={max}
+                min="100"
+                max="1000"
+                onChange={event => onInputMaxChange(event)}
+              />
             </Flex>
           </div>
           <div>
@@ -36,7 +50,12 @@ const Filters = ({ onClick }) => {
           </div>
           <div>
             <Heading2>Okamžitá rezervace</Heading2>
-            <select name="reservation" id="reservation" onChange={() => console.log("select")}>
+            <select
+              name="reservation"
+              id="reservation"
+              reservation={reservation}
+              onChange={event => onSelectChange(event)}
+            >
               <option value="yes">Ano</option>
               <option value="no">Ne</option>
             </select>
