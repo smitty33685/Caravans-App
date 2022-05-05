@@ -24,3 +24,7 @@ p {
   margin: 0;
   line-height: 1;
 }
+
+.input-range {
+  margin: 2rem 0;
+}
