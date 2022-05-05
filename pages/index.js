@@ -4,34 +4,60 @@ import Filters from "../src/components/Filters";
 import styled from "styled-components";
 
 const Home = () => {
-  const [type, setType] = useState("");
-  const [reservation, setReservation] = useState("yes");
-  const [minPrice, setMinPrice] = useState(100);
-  const [maxPrice, setMaxPrice] = useState(1000);
+  const [type, setType] = useState("Intergrated");
+  const [reservation, setReservation] = useState(true);
   const [rangePrice, setRangePrice] = useState({ min: 100, max: 10000 });
+  const [caravans, setCaravans] = useState([]);
+  const [filteredCaravans, setFilteredCaravans] = useState([]);
 
-  const getData = async () => {
-    const response = await fetch("/api/data");
-    const data = await response.json();
+  const filterCaravans = () => {
+    setFilteredCaravans(
+      caravans.filter(
+        caravan =>
+          caravan.vehicleType === type &&
+          caravan.instantBookable === reservation &&
+          caravan.price <= rangePrice.max &&
+          caravan.price >= rangePrice.min,
+      ),
+    );
+  };
 
-    console.log(data);
+  const getCaravans = async () => {
+    try {
+      const response = await fetch("/api/data");
+      const data = await response.json();
+
+      setCaravans(data.items);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    getData();
+    filterCaravans();
+
+    // TODO figure out warning
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, reservation, rangePrice, caravans]);
+
+  useEffect(() => {
+    getCaravans();
+
+    // TODO figure out warning
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <PageWrapper>
       <Navbar />
       <Filters
-        min={minPrice}
-        max={maxPrice}
         rangePrice={rangePrice}
+        reservation={reservation}
         onClick={type => setType(type)}
-        onSelectChange={event => setReservation(event.target.value)}
-        onInputMinChange={event => setMinPrice(Number(event.target.value))}
-        onInputMaxChange={event => setMaxPrice(Number(event.target.value))}
+        // TODO handle boolean in select
+        onSelectChange={event => setReservation(event.target.value === "true" ? true : false)}
+        onInputMinChange={event => setRangePrice({ ...rangePrice, min: Number(event.target.value) })}
+        onInputMaxChange={event => setRangePrice({ ...rangePrice, max: Number(event.target.value) })}
         onInputRangeChange={value => setRangePrice(value)}
       />
     </PageWrapper>

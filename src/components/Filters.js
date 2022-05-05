@@ -5,9 +5,8 @@ import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
 const Filters = ({
-  min,
-  max,
   rangePrice,
+  reservation,
   onClick,
   onSelectChange,
   onInputMinChange,
@@ -37,7 +36,7 @@ const Filters = ({
               <input
                 type="number"
                 id="minNum"
-                value={min}
+                value={rangePrice.min}
                 min="100"
                 max="10000"
                 onChange={event => onInputMinChange(event)}
@@ -45,7 +44,7 @@ const Filters = ({
               <input
                 type="number"
                 id="maxNum"
-                value={max}
+                value={rangePrice.max}
                 min="100"
                 max="10000"
                 onChange={event => onInputMaxChange(event)}
@@ -67,9 +66,9 @@ const Filters = ({
           </div>
           <div>
             <Heading2>Okamžitá rezervace</Heading2>
-            <select name="reservation" id="reservation" onChange={event => onSelectChange(event)}>
-              <option value="yes">Ano</option>
-              <option value="no">Ne</option>
+            <select name="reservation" id="reservation" value={reservation} onChange={event => onSelectChange(event)}>
+              <option value={true}>Ano</option>
+              <option value={false}>Ne</option>
             </select>
           </div>
         </Grid>
