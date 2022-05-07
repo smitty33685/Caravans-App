@@ -1,5 +1,5 @@
 import { Container, Flex, Heading2 } from "../components/styles/LayoutComponents";
-import { StyledSection, Grid, Icon } from "../components/styles/Filters.styled";
+import { StyledSection, Grid, Icon, Typeboxes } from "../components/styles/Filters.styled";
 import Typebox from "../components/Typebox";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
@@ -54,7 +54,7 @@ const Filters = ({
           </div>
           <div>
             <Heading2>Typ karavanu</Heading2>
-            <Flex>
+            <Typeboxes>
               {boxData.map((box, index) => (
                 <Typebox
                   heading={box.heading}
@@ -64,7 +64,7 @@ const Filters = ({
                   onClick={() => onClick(box.type)}
                 />
               ))}
-            </Flex>
+            </Typeboxes>
           </div>
           <div>
             <Flex>

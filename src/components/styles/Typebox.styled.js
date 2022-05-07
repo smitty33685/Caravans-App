@@ -7,10 +7,6 @@ export const StyledDiv = styled.div`
   border-radius: 8px;
   cursor: pointer;
 
-  &:not(:last-child) {
-    margin-right: 1rem;
-  }
-
   &:hover {
     border-color: #119383;
   }

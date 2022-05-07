@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  max-width: 380px;
+  max-width: 100%;
+
+  @media (min-width: 400px) {
+    max-width: 380px;
+  }
 `;
 
 export const StyledSection = styled.section`
@@ -35,11 +39,17 @@ export const Paragraph = styled.p`
 `;
 
 export const Image = styled.img`
-  width: 380px;
-  height: 285px;
+  display: block;
+  width: 100%;
+  height: auto;
   object-fit: fill;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
+
+  @media (min-width: 400px) {
+    max-width: 380px;
+    height: 285px;
+  }
 `;
 
 export const Icon = styled.img`

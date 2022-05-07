@@ -25,23 +25,38 @@ export const Icon = styled.img`
   margin: 0 0 1rem 0.5rem;
 `;
 
+export const Typeboxes = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  row-gap: 1rem;
+`;
+
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 25% 55% 20%;
+  grid-template-columns: 1fr;
 
   & > div {
-    padding: 1rem;
+    padding: 1rem 0;
+  }
 
-    &:not(:last-child) {
-      border-right: 1px solid #edeae3;
-    }
+  @media (min-width: 400px) {
+    grid-template-columns: 25% 55% 20%;
 
-    &:first-child {
-      padding-left: 0;
-    }
+    & > div {
+      padding: 1rem;
 
-    &:last-child {
-      padding-right: 0;
+      &:not(:last-child) {
+        border-right: 1px solid #edeae3;
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
     }
   }
 `;
