@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
   flex: 1;
   padding: 12px;
-  border: 1px solid #edeae3;
+  border: 2px solid #edeae3;
   border-radius: 8px;
   cursor: pointer;
 
@@ -12,6 +12,10 @@ export const StyledDiv = styled.div`
   }
 
   &:hover {
+    border-color: #119383;
+  }
+
+  &.active {
     border-color: #119383;
   }
 `;

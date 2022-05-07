@@ -5,6 +5,7 @@ import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
 const Filters = ({
+  type,
   rangePrice,
   reservation,
   onClick,
@@ -58,6 +59,7 @@ const Filters = ({
                 <Typebox
                   heading={box.heading}
                   paragraph={box.paragraph}
+                  activeClass={box.type === type}
                   key={index}
                   onClick={() => onClick(box.type)}
                 />

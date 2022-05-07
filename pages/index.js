@@ -60,6 +60,7 @@ const Home = () => {
     <PageWrapper>
       <Navbar />
       <Filters
+        type={type}
         rangePrice={rangePrice}
         reservation={reservation}
         onClick={type => setType(type)}
