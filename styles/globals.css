@@ -28,3 +28,13 @@ p {
 .input-range {
   margin: 2rem 0;
 }
+
+/* OVERWRITE REACT INPUT RANGE - remove input range numbers and shorter width because of wide handle points  */
+.input-range .input-range__label-container {
+  display: none;
+}
+
+.input-range .input-range__track {
+  width: calc(100% - 16px);
+  left: 8px;
+}

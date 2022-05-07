@@ -21,6 +21,10 @@ export const StyledSection = styled.section`
   }
 `;
 
+export const Icon = styled.img`
+  margin: 0 0 1rem 0.5rem;
+`;
+
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 25% 55% 20%;
@@ -30,6 +34,14 @@ export const Grid = styled.div`
 
     &:not(:last-child) {
       border-right: 1px solid #edeae3;
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
     }
   }
 `;

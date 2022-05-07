@@ -4,13 +4,13 @@ import CaravanCard from "../components/CaravanCard";
 
 const CaravanList = ({ caravans }) => {
   return (
-    <StyledMain>
-      <Container>
+    <Container>
+      <StyledMain>
         {caravans.map((caravan, index) => (
           <CaravanCard key={index} caravan={caravan} />
         ))}
-      </Container>
-    </StyledMain>
+      </StyledMain>
+    </Container>
   );
 };
 

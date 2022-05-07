@@ -1,5 +1,5 @@
 import { Container, Flex, Heading2 } from "../components/styles/LayoutComponents";
-import { StyledSection, Grid } from "../components/styles/Filters.styled";
+import { StyledSection, Grid, Icon } from "../components/styles/Filters.styled";
 import Typebox from "../components/Typebox";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
@@ -65,7 +65,11 @@ const Filters = ({
             </Flex>
           </div>
           <div>
-            <Heading2>Okamžitá rezervace</Heading2>
+            <Flex>
+              <Heading2>Okamžitá rezervace</Heading2>
+              <Icon src="icon-booking.svg" alt="Booking icon"></Icon>
+            </Flex>
+
             <select name="reservation" id="reservation" value={reservation} onChange={event => onSelectChange(event)}>
               <option value={true}>Ano</option>
               <option value={false}>Ne</option>
