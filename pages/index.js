@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../src/components/Navbar";
 import Filters from "../src/components/Filters";
 import CaravanList from "../src/components/CaravanList";
+import Loader from "../src/components/Loader";
 import styled from "styled-components";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
   const [rangePrice, setRangePrice] = useState({ min: 100, max: 10000 });
   const [caravans, setCaravans] = useState([]);
   const [filteredCaravans, setFilteredCaravans] = useState([]);
+  const [showLoader, setShowLoader] = useState(false);
 
   const filterCaravans = () => {
     setFilteredCaravans(
@@ -25,12 +27,15 @@ const Home = () => {
 
   const getCaravans = async () => {
     try {
+      setShowLoader(true);
       const response = await fetch("/api/data");
       const data = await response.json();
 
       setCaravans(data.items);
     } catch (error) {
       console.log(error);
+    } finally {
+      setShowLoader(false);
     }
   };
 
@@ -61,7 +66,7 @@ const Home = () => {
         onInputMaxChange={event => setRangePrice({ ...rangePrice, max: Number(event.target.value) })}
         onInputRangeChange={value => setRangePrice(value)}
       />
-      <CaravanList caravans={filteredCaravans} />
+      {showLoader ? <Loader /> : <CaravanList caravans={filteredCaravans} />}
     </PageWrapper>
   );
 };
