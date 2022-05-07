@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../src/components/Navbar";
 import Filters from "../src/components/Filters";
 import CaravanList from "../src/components/CaravanList";
+import Error from "../src/components/Error";
 import Loader from "../src/components/Loader";
 import styled from "styled-components";
 
@@ -12,6 +13,7 @@ const Home = () => {
   const [caravans, setCaravans] = useState([]);
   const [filteredCaravans, setFilteredCaravans] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const filterCaravans = () => {
     setFilteredCaravans(
@@ -27,13 +29,14 @@ const Home = () => {
 
   const getCaravans = async () => {
     try {
+      setShowError(false);
       setShowLoader(true);
       const response = await fetch("/api/data");
       const data = await response.json();
 
       setCaravans(data.items);
     } catch (error) {
-      console.log(error);
+      setShowError(true);
     } finally {
       setShowLoader(false);
     }
@@ -66,6 +69,8 @@ const Home = () => {
         onInputMaxChange={event => setRangePrice({ ...rangePrice, max: Number(event.target.value) })}
         onInputRangeChange={value => setRangePrice(value)}
       />
+      {showError && <Error text="Něco se pokazilo" />}
+      {!filteredCaravans.length && !showLoader && !showError && <Error text="Nic nenalezeno" />}
       {showLoader ? <Loader /> : <CaravanList caravans={filteredCaravans} />}
     </PageWrapper>
   );
