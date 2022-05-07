@@ -1,5 +1,5 @@
-import { Container, Heading2 } from "../components/styles/LayoutComponents";
-import { StyledSection, Grid, Flex } from "../components/styles/Filters.styled";
+import { Container, Flex, Heading2 } from "../components/styles/LayoutComponents";
+import { StyledSection, Grid } from "../components/styles/Filters.styled";
 import Typebox from "../components/Typebox";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";

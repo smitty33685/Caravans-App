@@ -6,6 +6,10 @@ export const Container = styled.div`
   margin: auto;
 `;
 
+export const Flex = styled.div`
+  display: flex;
+`;
+
 export const Heading2 = styled.h2`
   font-size: 1rem;
   color: #9c8c8c;

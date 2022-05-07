@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../src/components/Navbar";
 import Filters from "../src/components/Filters";
+import CaravanList from "../src/components/CaravanList";
 import styled from "styled-components";
 
 const Home = () => {
@@ -60,6 +61,7 @@ const Home = () => {
         onInputMaxChange={event => setRangePrice({ ...rangePrice, max: Number(event.target.value) })}
         onInputRangeChange={value => setRangePrice(value)}
       />
+      <CaravanList caravans={filteredCaravans} />
     </PageWrapper>
   );
 };
