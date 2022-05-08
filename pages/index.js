@@ -39,7 +39,7 @@ const Home = () => {
       const data = await response.json();
 
       setCaravans(data.items);
-    } catch (error) {
+    } catch {
       setShowError(true);
     } finally {
       setShowLoader(false);
@@ -47,8 +47,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    filterCaravans();
-
+    if (rangePrice.min <= 100 || rangePrice.max >= 10000) {
+      filterCaravans();
+    }
     // TODO figure out warning
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, reservation, rangePrice, caravans, caravansToShow]);

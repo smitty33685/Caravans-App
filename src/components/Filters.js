@@ -1,6 +1,7 @@
 import { Container, Flex, Heading2 } from "../components/styles/LayoutComponents";
 import { StyledSection, Grid, Icon, Typeboxes, InputWrapper } from "../components/styles/Filters.styled";
 import Typebox from "../components/Typebox";
+import Error from "../components/Error";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
@@ -57,6 +58,9 @@ const Filters = ({
                 <p>Kč</p>
               </InputWrapper>
             </Flex>
+            {rangePrice.min < 100 || rangePrice.max > 10000 ? (
+              <Error text="Cena musí být mezi 100kč a 10000kč" />
+            ) : null}
           </div>
           <div>
             <Heading2>Typ karavanu</Heading2>
