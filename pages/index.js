@@ -50,15 +50,11 @@ const Home = () => {
     if (rangePrice.min <= 100 || rangePrice.max >= 10000) {
       filterCaravans();
     }
-    // TODO figure out warning
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, reservation, rangePrice, caravans, caravansToShow]);
 
   useEffect(() => {
     getCaravans();
-
-    // TODO figure out warning
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
