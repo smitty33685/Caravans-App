@@ -8,14 +8,16 @@ import Button from "../src/components/Button";
 import styled from "styled-components";
 
 const Home = () => {
+  const DEFAULT_MIN_PRICE = 100;
+  const DEFAULT_MAX_PRICE = 10000;
+  const CARAVAN_TO_SHOW = 3;
   const [type, setType] = useState("Intergrated");
   const [reservation, setReservation] = useState(true);
-  const [rangePrice, setRangePrice] = useState({ min: 100, max: 10000 });
+  const [rangePrice, setRangePrice] = useState({ min: DEFAULT_MIN_PRICE, max: DEFAULT_MAX_PRICE });
   const [caravans, setCaravans] = useState([]);
   const [filteredCaravans, setFilteredCaravans] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
   const [showError, setShowError] = useState(false);
-  const CARAVAN_TO_SHOW = 3;
   const [caravansToShow, setCaravansToShow] = useState(CARAVAN_TO_SHOW);
   const [shownCaravans, setShownCaravans] = useState([]);
 
@@ -47,7 +49,12 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (rangePrice.min >= 100 && rangePrice.min <= 10000 && rangePrice.max >= 100 && rangePrice.max <= 10000) {
+    if (
+      rangePrice.min >= DEFAULT_MIN_PRICE &&
+      rangePrice.min <= DEFAULT_MAX_PRICE &&
+      rangePrice.max >= DEFAULT_MIN_PRICE &&
+      rangePrice.max <= DEFAULT_MAX_PRICE
+    ) {
       setCaravansToShow(CARAVAN_TO_SHOW);
       filterCaravans();
     }
