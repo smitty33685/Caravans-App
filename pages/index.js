@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (rangePrice.min <= 100 || rangePrice.max >= 10000) {
+    if (rangePrice.min >= 100 || rangePrice.max <= 10000) {
       filterCaravans();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
