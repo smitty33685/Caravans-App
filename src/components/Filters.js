@@ -82,9 +82,9 @@ const Filters = ({
               <Icon src="icon-booking.svg" alt="Booking icon"></Icon>
             </Flex>
 
-            <select name="reservation" id="reservation" value={reservation} onChange={event => onSelectChange(event)}>
-              <option value={true}>Ano</option>
-              <option value={false}>Ne</option>
+            <select name="reservation" id="reservation" defaultValue={1} onChange={event => onSelectChange(event)}>
+              <option value={1}>Ano</option>
+              <option value={0}>Ne</option>
             </select>
           </div>
         </Grid>

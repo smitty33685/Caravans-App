@@ -15,19 +15,19 @@ const Home = () => {
   const [filteredCaravans, setFilteredCaravans] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [caravansToShow, setCaravansToShow] = useState(6);
+  const CARAVAN_TO_SHOW = 3;
+  const [caravansToShow, setCaravansToShow] = useState(CARAVAN_TO_SHOW);
+  const [shownCaravans, setShownCaravans] = useState([]);
 
   const filterCaravans = () => {
     setFilteredCaravans(
-      caravans
-        .filter(
-          caravan =>
-            caravan.vehicleType === type &&
-            caravan.instantBookable === reservation &&
-            caravan.price <= rangePrice.max &&
-            caravan.price >= rangePrice.min,
-        )
-        .slice(0, caravansToShow),
+      caravans.filter(
+        caravan =>
+          caravan.vehicleType === type &&
+          caravan.instantBookable === reservation &&
+          caravan.price <= rangePrice.max &&
+          caravan.price >= rangePrice.min,
+      ),
     );
   };
 
@@ -48,10 +48,15 @@ const Home = () => {
 
   useEffect(() => {
     if (rangePrice.min >= 100 || rangePrice.max <= 10000) {
+      setCaravansToShow(CARAVAN_TO_SHOW);
       filterCaravans();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type, reservation, rangePrice, caravans, caravansToShow]);
+  }, [type, reservation, rangePrice, caravans]);
+
+  useEffect(() => {
+    setShownCaravans(filteredCaravans.slice(0, caravansToShow));
+  }, [filteredCaravans, caravansToShow]);
 
   useEffect(() => {
     getCaravans();
@@ -65,20 +70,19 @@ const Home = () => {
         rangePrice={rangePrice}
         reservation={reservation}
         onClick={type => setType(type)}
-        // TODO handle boolean in select
-        onSelectChange={event => setReservation(event.target.value === "true" ? true : false)}
+        onSelectChange={event => setReservation(Boolean(Number(event.target.value)))}
         onInputMinChange={event => setRangePrice({ ...rangePrice, min: Number(event.target.value) })}
         onInputMaxChange={event => setRangePrice({ ...rangePrice, max: Number(event.target.value) })}
         onInputRangeChange={value => setRangePrice(value)}
       />
       {showError && <Error text="Něco se pokazilo" />}
-      {!filteredCaravans.length && !showLoader && !showError && <Error text="Nic nenalezeno" />}
-      {showLoader ? <Loader /> : <CaravanList caravans={filteredCaravans} />}
-      {filteredCaravans.length && (
+      {!shownCaravans.length && !showLoader && !showError && <Error text="Nic nenalezeno" />}
+      {showLoader ? <Loader /> : <CaravanList caravans={shownCaravans} />}
+      {filteredCaravans.length > caravansToShow ? (
         <ButtonWrapper>
-          <Button text="Načíst další" handleClick={() => setCaravansToShow(caravansToShow + 6)} />
+          <Button text="Načíst další" handleClick={() => setCaravansToShow(caravansToShow + CARAVAN_TO_SHOW)} />
         </ButtonWrapper>
-      )}
+      ) : null}
     </PageWrapper>
   );
 };
