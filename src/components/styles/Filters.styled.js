@@ -14,10 +14,11 @@ export const StyledSection = styled.section`
     padding: 14px 12px;
     border: 1px solid #edeae3;
     border-radius: 8px;
+  }
 
-    &:first-child {
-      margin-right: 1rem;
-    }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 `;
 
@@ -58,5 +59,22 @@ export const Grid = styled.div`
         padding-right: 0;
       }
     }
+  }
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+
+  &:first-child {
+    margin-right: 1rem;
+  }
+
+  p {
+    position: absolute;
+    top: 14px;
+    right: 12px;
+    margin: 0;
+    color: #9c8c8c;
   }
 `;

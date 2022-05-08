@@ -1,5 +1,5 @@
 import { Container, Flex, Heading2 } from "../components/styles/LayoutComponents";
-import { StyledSection, Grid, Icon, Typeboxes } from "../components/styles/Filters.styled";
+import { StyledSection, Grid, Icon, Typeboxes, InputWrapper } from "../components/styles/Filters.styled";
 import Typebox from "../components/Typebox";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
@@ -34,22 +34,28 @@ const Filters = ({
               onChange={value => onInputRangeChange(value)}
             />
             <Flex>
-              <input
-                type="number"
-                id="minNum"
-                value={rangePrice.min}
-                min="100"
-                max="10000"
-                onChange={event => onInputMinChange(event)}
-              />
-              <input
-                type="number"
-                id="maxNum"
-                value={rangePrice.max}
-                min="100"
-                max="10000"
-                onChange={event => onInputMaxChange(event)}
-              />
+              <InputWrapper>
+                <input
+                  type="number"
+                  id="minNum"
+                  value={rangePrice.min}
+                  min="100"
+                  max="10000"
+                  onChange={event => onInputMinChange(event)}
+                />
+                <p>Kč</p>
+              </InputWrapper>
+              <InputWrapper>
+                <input
+                  type="number"
+                  id="maxNum"
+                  value={rangePrice.max}
+                  min="100"
+                  max="10000"
+                  onChange={event => onInputMaxChange(event)}
+                />
+                <p>Kč</p>
+              </InputWrapper>
             </Flex>
           </div>
           <div>

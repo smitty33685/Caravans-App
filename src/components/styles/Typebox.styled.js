@@ -14,4 +14,8 @@ export const StyledDiv = styled.div`
   &.active {
     border-color: #119383;
   }
+
+  @media (max-width: 400px) {
+    min-width: 35%;
+  }
 `;
