@@ -77,9 +77,11 @@ const Home = () => {
       {showError && <Error text="Něco se pokazilo" />}
       {!filteredCaravans.length && !showLoader && !showError && <Error text="Nic nenalezeno" />}
       {showLoader ? <Loader /> : <CaravanList caravans={filteredCaravans} />}
-      <ButtonWrapper>
-        <Button text="Načíst další" handleClick={() => setCaravansToShow(caravansToShow + 6)} />
-      </ButtonWrapper>
+      {filteredCaravans.length && (
+        <ButtonWrapper>
+          <Button text="Načíst další" handleClick={() => setCaravansToShow(caravansToShow + 6)} />
+        </ButtonWrapper>
+      )}
     </PageWrapper>
   );
 };
