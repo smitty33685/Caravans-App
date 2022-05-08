@@ -47,7 +47,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (rangePrice.min >= 100 || rangePrice.max <= 10000) {
+    if (rangePrice.min >= 100 && rangePrice.min <= 10000 && rangePrice.max >= 100 && rangePrice.max <= 10000) {
       setCaravansToShow(CARAVAN_TO_SHOW);
       filterCaravans();
     }
