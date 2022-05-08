@@ -48,13 +48,17 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    if (
+  const correctPriceRange = () => {
+    return (
       rangePrice.min >= DEFAULT_MIN_PRICE &&
       rangePrice.min <= DEFAULT_MAX_PRICE &&
       rangePrice.max >= DEFAULT_MIN_PRICE &&
       rangePrice.max <= DEFAULT_MAX_PRICE
-    ) {
+    );
+  };
+
+  useEffect(() => {
+    if (correctPriceRange()) {
       setCaravansToShow(CARAVAN_TO_SHOW);
       filterCaravans();
     }
@@ -73,6 +77,7 @@ const Home = () => {
     <PageWrapper>
       <Navbar />
       <Filters
+        showPriceAlert={!correctPriceRange()}
         type={type}
         rangePrice={rangePrice}
         reservation={reservation}

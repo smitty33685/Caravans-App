@@ -8,7 +8,7 @@ import "react-input-range/lib/css/index.css";
 const Filters = ({
   type,
   rangePrice,
-  reservation,
+  showPriceAlert,
   onClick,
   onSelectChange,
   onInputMinChange,
@@ -58,9 +58,7 @@ const Filters = ({
                 <p>Kč</p>
               </InputWrapper>
             </Flex>
-            {rangePrice.min < 100 || rangePrice.max > 10000 ? (
-              <Error text="Cena musí být mezi 100kč a 10000kč" />
-            ) : null}
+            {showPriceAlert && <Error text="Cena musí být mezi 100kč a 10000kč" />}
           </div>
           <div>
             <Heading2>Typ karavanu</Heading2>
